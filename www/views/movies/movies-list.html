@@ -1,0 +1,17 @@
+<ion-view title="Movie list" id="view-movies-list">
+    <ion-content>
+        <div class="bar item-input-inset bar-search">
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search"></i>
+                <input type="search" ng-model="searchString" placeholder="Search">
+            </label>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="movie in data.movies | orderBy: '-vote_average' | filter: searchString" ui-sref="movies-detail({'id': movie.id})" class="item-avatar item-icon-right">
+                <img ng-src="http://image.tmdb.org/t/p/w500{{movie.backdrop_path}}" alt="" class="fit-thumbnail"/>
+                <h2>{{movie.title}}</h2>
+                <p>{{movie.vote_average}} / 10</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

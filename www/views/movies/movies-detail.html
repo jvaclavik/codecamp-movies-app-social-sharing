@@ -1,0 +1,36 @@
+<ion-view id="view-movies-detail">
+    <ion-nav-title>{{movie.title}}</ion-nav-title>
+    <ion-content>
+        <img ng-src="http://image.tmdb.org/t/p/w500{{movie.backdrop_path}}" alt=""/>
+        <ul class="list">
+            <li class="item">
+                <strong>Release date:</strong>
+                {{movie.release_date | date: 'yyyy'}}
+            </li>
+            <li class="item">
+                <strong>Rating:</strong>
+                {{movie.vote_average}} ({{movie.vote_count}}x)
+            </li>
+            <li class="item item-body">
+                <p>{{movie.overview}}</p>
+            </li>
+            <li class="item">
+                <button class="button button-block" ng-click="toggleWatched(movie.id)"
+                        ng-class="{'button-positive': !isMovieWatched(), 'button-royal': isMovieWatched()}">
+                    <span ng-if="!isMovieWatched()">Mark as watched</span>
+                    <span ng-if="isMovieWatched()">Unmark as watched</span>
+                </button>
+            </li>
+            <li class="item item-divider">Share</li>
+            <li class="item">
+                <button class="button button-block button-positive" ng-click="share('twitter')">
+                    <i class="icon ion-social-twitter"></i> Share on Twitter
+                </button>
+
+                <button class="button button-block button-royal" ng-click="share('email')">
+                    <i class="icon ion-email"></i> Share on E-mail
+                </button>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>
